@@ -28,8 +28,11 @@ class Auth extends BaseController
                     'id_user' => $result['id_user'],
                 ];
                 session()->set($data);
-
-                return redirect()->to('/profile');
+                if ($result['username']==null) {
+                    return redirect()->to('/profile');
+                }else{
+                    echo 'oke';
+                }
             } else {
                 session()->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                Wrong Password!

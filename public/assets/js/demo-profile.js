@@ -1,5 +1,5 @@
 function priviewImg() {
-  const sampul = document.querySelector("#sampul");
+  const sampul = document.querySelector("#profile");
   const sampul_label = document.querySelector(".form-control");
   const imgPreview = document.querySelector(".imgPreview");
 
