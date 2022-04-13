@@ -1,5 +1,15 @@
-<?= $this->extend('layout/templates'); ?>
-<?= $this->section('content'); ?>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- bootrap templates -->
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css">
+    <title>ChapApp</title>
+</head>
+<body>
 <div class="container">
     <div class="row justify-content-center py-5">
         <div class="col-lg-8 col-10">
@@ -21,7 +31,7 @@
                         <div class="form-row mb-3">
                             <div class="col-6">
                                 <div class="custom-control custom-checkbox text-left">
-                                    <input type="checkbox" class="custom-control-input" id="rememberme">
+                                    <input type="checkbox" class="custom-control-input" value="remember" name="remember_me" id="rememberme">
                                     <label class="custom-control-label font-14" for="rememberme">Remember Me</label>
                                 </div>
                             </div>
@@ -34,4 +44,11 @@
         </div>
     </div>
 </div>
-<?= $this->endSection(); ?>
+
+</body>
+<!--  bootrap templates -->
+<script src="/assets/bootstrap/js/bootstrap.js"></script>
+<!--  -->
+<!-- change profile -->
+<script src="/assets/js/demo-profile.js"></script>
+</html>
