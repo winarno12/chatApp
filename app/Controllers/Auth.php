@@ -127,25 +127,4 @@ class Auth extends BaseController
     {
         session()->destroy();
     }
-
-    public function setCookie()
-    {
-        $cookie = new Cookie(
-            'remember_token',
-            'f699c7fd18a8e082d0228932f3acd40e1ef5ef92efcedda32842a211d62f0aa6',
-            [
-                'expires'  => new DateTime('2025-02-14 00:00:00', new DateTimeZone('UTC')),
-                'prefix'   => '__Secure-',
-                'path'     => '/',
-                'domain'   => '',
-                'secure'   => true,
-                'httponly' => true,
-                'raw'      => false,
-            ]
-        );
-    }
-    public function getCookie()
-    {
-        dd(cookies()->get('remember_token'));
-    }
 }
