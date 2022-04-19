@@ -3,10 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\usersModel;
-use CodeIgniter\Cookie\CookieStore;
-use Config\Cookie;
-use DateTime;
-use DateTimeZone;
 
 class Auth extends BaseController
 {
@@ -21,7 +17,6 @@ class Auth extends BaseController
     }
     public function login()
     {
-        $this->response->setCookie('login', 'login', 60);
         $data = [
             'email'      => $this->request->getVar('email'),
             'password'   => md5($this->request->getVar('password'))
@@ -32,11 +27,12 @@ class Auth extends BaseController
             if ($result['password'] == $data['password']) {
                 $data = [
                     'id_user' => $result['id_user'],
-                    'remember_me' => $this->request->getVar('remember_me')
+                    
                 ];
+                
+                set_cookie("name", "online_web_tutor_blog", 3600);
                 session()->set($data);
-                if ($this->request->getVar('remember_me')) {
-                }
+
                 return redirect()->to('profile');
             } else {
                 session()->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -126,5 +122,10 @@ class Auth extends BaseController
     public function logout()
     {
         session()->destroy();
+        delete_cookie("username");
+    }
+    public function tes()
+    {
+        set_cookie("username", "online_web_tutor_blog", 3600);
     }
 }

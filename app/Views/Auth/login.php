@@ -1,15 +1,5 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- bootrap templates -->
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css">
-    <title>ChapApp</title>
-</head>
-<body>
+<?= $this->extend('layout/templates'); ?>
+<?= $this->section('content'); ?>
 <div class="container">
     <div class="row justify-content-center py-5">
         <div class="col-lg-8 col-10">
@@ -44,11 +34,4 @@
         </div>
     </div>
 </div>
-
-</body>
-<!--  bootrap templates -->
-<script src="/assets/bootstrap/js/bootstrap.js"></script>
-<!--  -->
-<!-- change profile -->
-<script src="/assets/js/demo-profile.js"></script>
-</html>
+<?= $this->endSection(); ?>

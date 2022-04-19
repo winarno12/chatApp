@@ -14,6 +14,12 @@ class usersModel extends Model
 
     public function getAllUser($id_user)
     {
-        return $this->db->query("SELECT a.id_user,b.status IS NOT NULL AS friends,a.about,a.username,b.status   FROM users a LEFT JOIN friends b ON a.id_user IN (b.user_one,b.user_two) AND $id_user IN (b.user_one) WHERE  (b.id_friends IS NULL OR b.status <> 2) AND a.id_user <> $id_user ORDER BY a.username;")->getResultArray();
+        return $this->db->query("SELECT a.profile,a.id_user,b.status IS NOT NULL AS friends,a.about,a.username,b.status   FROM users a LEFT JOIN friends b ON a.id_user IN (b.id_user,b.id_friend) AND $id_user IN (b.id_user,b.id_friend) WHERE  (b.id_friends IS NULL OR b.status <> 2) AND a.id_user <> $id_user ORDER BY a.username;")->getResultArray();
     }
+    public function getRequestFriend($id_user)
+    {
+        return $this->db->query("SELECT b.id_friends,a.id_user,a.username,a.profile,a.about,b.status FROM friends b ,users a WHERE  b.id_user=$id_user AND  b.id_friend=a.id_user OR b.id_user=a.id_user AND b.id_friend=$id_user AND b.status=1  ORDER BY b.created_at;")->getResultArray();
+    }
+
+    
 }

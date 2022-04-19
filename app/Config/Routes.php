@@ -34,6 +34,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Auth::index');
 $routes->get('/register','Auth::registerAcount');
 $routes->post('/login', 'Auth::login');
+$routes->get('/users', 'Users::index');
+$routes->get('/notif', 'Users::notif');
 
 
 /*
