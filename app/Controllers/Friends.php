@@ -18,12 +18,19 @@ class Friends extends BaseController{
             ]
         );
     }
-
     public function acceptFrineds(){
         $this->friendModel->save(
             $data = [
                 'id_friends' => $this->request->getVar('id_friends'),
                 'status' => 2
+            ]
+        );
+    }
+    public function rejectFrineds(){
+        $this->friendModel->save(
+            $data = [
+                'id_friends' => $this->request->getVar('id_friends'),
+                'status' => 0
             ]
         );
     }

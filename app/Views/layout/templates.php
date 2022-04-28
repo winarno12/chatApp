@@ -21,7 +21,7 @@
     <title>ChapApp</title>
 </head>
 
-<body>
+<body style="background-color: #eee;">
     <?= $this->renderSection('content'); ?>
 </body>
 <!--  bootrap templates -->

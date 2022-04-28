@@ -5,14 +5,6 @@
 <!-- link -->
 <!--script  -->
 <script>
-    base_url = '<?php echo base_url(); ?>';
-    mappia = "	<?php
-                    $site_url = 'users';
-                    echo site_url($site_url);
-                    ?>";
-
-
-
     $(document).on('click', '.add_friend', function() {
         var friend_id = $(this).attr("id");
         console.log(friend_id);
@@ -23,7 +15,7 @@
                 "friend_id": friend_id
             },
             success: function(msg) {
-                window.location.replace(mappia);
+                location.reload();
             }
         });
     });
@@ -45,8 +37,7 @@
                                         </div>
                                     </div>
                                     <div class="col-3 offset-4">
-                                        <a href="" class="btn btn-light btn-sm"><i class="fas fa-bell fa-2x"></i></a>
-                                        <a href="" class="btn btn-light btn-sm mx-3"><i class="fas fa-duotone fa-backward fa-2x"></i></a>
+                                        <a href="./home" class="btn btn-light btn-sm mx-3"><i class="fas fa-duotone fa-backward fa-2x"></i></a>
                                     </div>
                                 </div>
                             </div>

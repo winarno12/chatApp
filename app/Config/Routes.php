@@ -36,6 +36,7 @@ $routes->get('/register','Auth::registerAcount');
 $routes->post('/login', 'Auth::login');
 $routes->get('/users', 'Users::index');
 $routes->get('/notif', 'Users::notif');
+$routes->get('/home', 'Chat::index');
 
 
 /*

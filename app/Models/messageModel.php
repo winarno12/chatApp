@@ -10,7 +10,7 @@ class usersModel extends Model
     protected $id                   = 'id_user';
     protected $primaryKey           = 'id_user';
     protected $useTimestamps        = true;
-    protected $allowedFields        = ['email', 'password', 'username', 'uniq_id', 'profile', 'about'];
+    protected $allowedFields        = ['email', 'password', 'username', 'uniq_id', 'img', 'about'];
 
     public function getAllUser($id_user)
     {

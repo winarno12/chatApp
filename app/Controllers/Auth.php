@@ -29,11 +29,9 @@ class Auth extends BaseController
                     'id_user' => $result['id_user'],
                     
                 ];
-                
-                set_cookie("name", "online_web_tutor_blog", 3600);
                 session()->set($data);
 
-                return redirect()->to('profile');
+                return redirect()->to('home');
             } else {
                 session()->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                Wrong Password!
@@ -78,7 +76,7 @@ class Auth extends BaseController
                     ]
                 ],
                 'password' => [
-                    'rules' => 'required|max_length[8]|min_length[8]|matches[confirm_password]',
+                    'rules' => 'required|max_length[10]|min_length[1]|matches[confirm_password]',
                     'errors' => [
                         'required' => '{field} Is Not Empty !',
                         'max_length' => '{field} To Long',
@@ -88,19 +86,17 @@ class Auth extends BaseController
                 ],
 
             ],
-
         )) {
             return  redirect()->to('auth/registerAcount')->withInput();
         } else {
 
             $profile = $this->request->getFile('profile');
             if ($profile->getError() == 4) {
-                $profile_name = 'profile.svg';
+                $profile_name = 'men.svg';
             } else {
                 $profile_name = $profile->getRandomName();
                 $profile->move('img/user', $profile_name);
             }
-
             $this->userModel->save(
                 $data = [
                     'uniq_id'   => md5(rand()),
@@ -108,7 +104,7 @@ class Auth extends BaseController
                     'email'     => $this->request->getVar('email'),
                     'password'  => md5($this->request->getVar('password')),
                     'about'     => $this->request->getVar('about'),
-                    'image'     => $profile_name
+                    'profile'   => $profile_name
 
                 ]
             );

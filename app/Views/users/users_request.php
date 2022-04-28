@@ -24,6 +24,20 @@
             }
         });
     });
+    $(document).on('click', '.reject_friend', function() {
+        var id_friends = $(this).attr("id");
+        console.log(id_friends);
+        $.ajax({
+            url: "<?= base_url(); ?>/Friends/rejectFrineds",
+            method: "POST",
+            data: {
+                "id_friends": id_friends
+            },
+            success: function(msg) {
+                window.location.replace(mappia);
+            }
+        });
+    });
 </script>
 <div class="row">
     <div class="col-12">
@@ -40,8 +54,7 @@
                                         </div>
                                     </div>
                                     <div class="col-3 offset-4">
-                                        <a href="" class="btn btn-light btn-sm"><i class="fas fa-bell fa-2x"></i></a>
-                                        <a href="" class="btn btn-light btn-sm mx-3"><i class="fas fa-duotone fa-backward fa-2x"></i></a>
+                                        <a href="./home" class="btn btn-light btn-sm mx-3"><i class="fas fa-duotone fa-backward fa-2x"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +73,7 @@
                                                     <p class="text-muted text-small"><?= $val['about']; ?></p>
                                                 </div>
                                                 <div class="col-md-3 col-sm-3 text-end">
-                                                    <input type="button" name="reject_friend" value="reject" id="<?= $val['id_friends']; ?>" class="btn btn-outline-danger btn-sm reject_friend"  data-mdb-ripple-color="dark"/>
+                                                    <input type="button" name="reject_friend" value="REJECT" id="<?= $val['id_friends']; ?>" class="btn btn-outline-danger btn-sm reject_friend"  data-mdb-ripple-color="dark"/>
                                                     <input type="button" name="acept_friend" value="ACCEPT" id="<?= $val['id_friends']; ?>" class="btn btn-success btn-sm accept_friend"/>
                                                 </div>
                                             </div>
