@@ -1,7 +1,8 @@
-<?php 
-use App\Models\friendModel;
+<?php
 
-  $this->friendModel = new friendModel();
+use App\Models\messageModel;
+
+$this->messageModel = new messageModel();
 ?>
 
 <?= $this->extend('layout/templates'); ?>
@@ -30,25 +31,37 @@ use App\Models\friendModel;
                         </div>
                         <div class="overflow-auto">
                             <div class="card-body">
-                                <ul class="list-unstyled mb-0">
-                                    <?php foreach($friends as $val): ?>
-                                    <li class="p-2 border-bottom ">
-                                        <a href="#!" class="d-flex justify-content-between text-decoration-none">
-                                            <div class="d-flex flex-row">
-                                                <img src="./img/user/<?=$val['profile']  ;?>" alt="avatar" class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
-                                                <div class="pt-1">
-                                                    <p class="fw-bold mb-0"><?=$val['username']  ;?></p>
-                                                    <p class="small text-muted"></p>
-                                                </div>
-                                            </div>
-                                            <div class="pt-1">
-                                                <p class="small text-muted mb-1">Just now</p>
-                                                <span class="badge bg-danger float-end">1</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <?php endforeach; ?>
-                                </ul>
+                                <?php if ($friends == null) : ?>
+                                    <h5 class="text-danger">You Not Have Friend</h5>
+                                <?php else : ?>
+                                    <ul class="list-unstyled mb-0">
+                                        <?php foreach ($friends as $val) : ?>
+                                            <li class="p-2 border-bottom ">
+                                                <a href="#!" class="d-flex justify-content-between text-decoration-none">
+                                                    <div class="d-flex flex-row">
+                                                        <img src="./img/user/<?= $val['profile']; ?>" alt="avatar" class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
+                                                        <div class="pt-1">
+                                                            <p class="fw-bold mb-0"><?= $val['username']; ?></p>
+                                                            <?php
+                                                            $message = $this->messageModel->getLastMessage(session()->get('id_user'), $val['id_user']);
+                                                            ?>
+                                                            <?php if ($message['send_id'] == session()->get('id_user')) : ?>
+                                                                <p class="small text-muted"><span class="text-bold">You:</span> <?= $message['message_subject']; ?></p>
+                                                            <?php else : ?>
+                                                                <p class="small text-muted"><?= $message['message_subject']; ?></p>
+                                                            <?php endif; ?>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="pt-1">
+                                                        <p class="small text-muted mb-1">Just now</p>
+                                                        <span class="badge bg-danger float-end">1</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

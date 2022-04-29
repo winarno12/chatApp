@@ -4,22 +4,18 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class usersModel extends Model
+class messageModel extends Model
 {
-    protected $table                = 'users';
-    protected $id                   = 'id_user';
-    protected $primaryKey           = 'id_user';
+    protected $table                = 'message';
+    protected $id                   = 'id_message';
+    protected $primaryKey           = 'id_message';
     protected $useTimestamps        = true;
-    protected $allowedFields        = ['email', 'password', 'username', 'uniq_id', 'img', 'about'];
+    protected $allowedFields        = ['group_id', 'send_id', 'receive_id', 'message_body', 'message_subject'];
 
-    public function getAllUser($id_user)
+    public function getLastMessage($id_user, $id_friend)
     {
-        return $this->db->query("SELECT a.profile,a.id_user,b.status IS NOT NULL AS friends,a.about,a.username,b.status   FROM users a LEFT JOIN friends b ON a.id_user IN (b.id_user,b.id_friend) AND $id_user IN (b.id_user,b.id_friend) WHERE  (b.id_friends IS NULL OR b.status <> 2) AND a.id_user <> $id_user ORDER BY a.username;")->getResultArray();
-    }
-    public function getRequestFriend($id_user)
-    {
-        return $this->db->query("SELECT b.id_friends,a.id_user,a.username,a.profile,a.about,b.status FROM friends b ,users a WHERE  b.id_friend=$id_user AND  b.id_user=a.id_user AND b.status=1  ORDER BY b.created_at;")->getResultArray();
-    }
+          $query= $this->db->query("SELECT  send_id,message_subject FROM message  WHERE  send_id=$id_user AND  receive_id=$id_friend  OR send_id=$id_friend AND  receive_id=$id_user ORDER BY id_message DESC LIMIT 1")->getRowArray();
+          return $query;
 
-    
+    }
 }
