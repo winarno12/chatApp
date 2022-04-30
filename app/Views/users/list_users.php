@@ -36,8 +36,8 @@
                                             <input type="search" class="form-control rounded border-primary" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                                         </div>
                                     </div>
-                                    <div class="col-3 offset-4">
-                                        <a href="./home" class="btn btn-light btn-sm mx-3"><i class="fas fa-duotone fa-backward fa-2x"></i></a>
+                                    <div class="col-7 text-end">
+                                        <a href="./home"  class="btn btn-outline-danger"><i class="fas fa-duotone fa-backward"></i></a>
                                     </div>
                                 </div>
                             </div>

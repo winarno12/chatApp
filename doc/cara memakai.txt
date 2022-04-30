@@ -1,0 +1,5 @@
+1.php version >7.4
+2.run your php server and  sql server 
+3.open project folder and run in php spark serve
+4.open project in https:localhost:8080
+5.Enjoy in my App

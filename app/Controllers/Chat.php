@@ -2,12 +2,15 @@
 
 namespace App\Controllers;
 use App\Models\friendModel;
+use App\Controllers\Users;
+use App\Models\usersModel;
 
 class Chat extends BaseController
 {
     public function __construct()
     {
         $this->friendModel = new friendModel();
+        $this->userModel = new usersModel();
     }
     public function index()
     {
@@ -17,8 +20,10 @@ class Chat extends BaseController
         // dd($data);
         return view('chat/home',$data);
     }
-    public function chat()
+    public function chat($uniq_id)
     {
-        return view('chat/message');
+        $data['user']=$this->userModel->first(['uniq_id'=>$uniq_id]);
+        // dd($data);
+        return view('chat/message',$data);
     }
 }
